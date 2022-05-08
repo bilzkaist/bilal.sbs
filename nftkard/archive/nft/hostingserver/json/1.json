@@ -1,0 +1,33 @@
+{
+    "creatorAddress" : "0xbd4A128fe8Ec3d7417e4AF2824Abe4860B74feA0",
+    "nftNFCUID" : "049C64D2452B80",
+    "nftCardNumber" : "20FF01",
+    "edition" : "Limited Edition",
+    "sample" : "01/20",
+    "image": "https://bilal.sbs/demoNFTAPI/archive/nft/hostingserver/images/1.jpg",
+    "name": "Bilz-Photo # 5610",
+    "description": "Bilz-Photo  @ ISI Lab NFT Demo Card SAMPLE",
+    "external_url": "https://bilal.sbs",
+    "attributes": [
+      {
+        "trait_type": "Location",
+        "value": "ISI LAB KAIST, Daejeon, South Korea"
+      },
+      {
+        "trait_type": "Creator",
+        "value": "Bilz"
+      },
+      {
+        "trait_type": "Headgear",
+        "value": "None"
+      },
+      {
+        "trait_type": "Accessories",
+        "value": "Glasses"
+      },
+      {
+        "trait_type": "Other Remarks",
+        "value": "1"
+      }
+    ]
+  }

@@ -1,0 +1,1 @@
+const contractAbi = //smart contract's compilation details will be copied as ABI and added here. 
