@@ -1,6 +1,6 @@
-Moralis.initialize("zUAslaQCPxdWxFtnIAPVbkc9LUNAjoON8eMCKgTw");
-Moralis.serverURL="https://suwkhta9idij.usemoralis.com:2053/server";
-const CONTRACT_ADDRESS = "0xfa59f3270bf5e9c6863f778bde7680e55915ffe";
+Moralis.initialize("PaClcWW3CtFlc141AaQM2AECASWAKoymybcvetWC");
+Moralis.serverURL="https://7mo2aen51dyh.usemoralis.com:2053/server";
+const CONTRACT_ADDRESS = "0xBA8a989eD9108c9f208965Ed7f098b1A93918c1B";
 let currentUser;
 
 function fetchNFTMetadata(NFTS){
