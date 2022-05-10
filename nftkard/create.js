@@ -1,32 +1,32 @@
-const btn = document.querySelector(".sbmtButton");
-btn.addEventListener("click",deletePrevious);
+const btn = document.querySelector(".createButton");
+//btn.addEventListener("click",deletePrevious);
 btn.addEventListener("click",addNew);
 btn.addEventListener("click",findID);
-let numberOfImages = document.getElementById("numberOfImages").value;
-const divContainer = document.getElementById("pictures");
-const foot = document.getElementById("footerPart");
+btn.addEventListener("click",getTextInput);
+btn.addEventListener("click",alerMessage);
+let divContainer = document.getElementById("pictures");
+let foot = document.getElementById("footerPart");
+let textInput = "";
 
-function getSelectedValue(){
-    return document.getElementById("numberOfImages").value;
-}
+
 
 function deletePrevious(){
-    divContainer.innerHTML = "";
+    divContainer.innerHTML = "hello";
+}
+
+function getTextInput(){
+    textInput = document.getElementById("to_address_input").value;
+}
+
+function alerMessage(){
+    alert(textInput);
 }
 
 function addNew(){
-    if(getSelectedValue() == 0) alert("Please choose number of images you want to generate");
-    
-    let keywordss = document.getElementById("keywords").value;
-    if(keywordss.length == 0) alert("Please enter your search keywords");
-
-    let numbOfImages = parseInt(getSelectedValue());
-    document.getElementById("footerPart").style.marginTop = "0px"
 
 let requestOptions = {
       method: 'POST',
       headers : {'Content-Type': 'application/json'},
-      body: JSON.stringify({ search:  keywordss})
   };
 
     let uri = 'http://143.248.56.39:50000/ai_generator'
