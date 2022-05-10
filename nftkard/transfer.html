@@ -2,7 +2,11 @@
 <html class="wide wow-animation" lang="en"> 
   <head>
     <!-- Site Title-->
-    <title>Transfer NFT </title>
+    <title>Coming-Soon - Welcome to the NFT KARD Website</title>
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/moralis/dist/moralis.js"></script>
+   
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 		crossorigin="anonymous"></script>
@@ -33,146 +37,152 @@
 		<![endif]--> 
   </head>
   <body>
-	  
-    <!-- Page preloader-->
-    <div class="page-loader"> 
-      <div class="page-loader-body"> 
-        <div class="preloader-wrapper big active"> 
-          <div class="spinner-layer spinner-blue"> 
-            <div class="circle-clipper left">
-              <div class="circle"> </div>
-            </div>
-            <div class="gap-patch">
-              <div class="circle"> </div>
-            </div>
-            <div class="circle-clipper right">
-              <div class="circle"></div>
-            </div>
+
+      <!-- Page preloader-->
+      <div class="page-loader">
+          <div class="page-loader-body">
+              <div class="preloader-wrapper big active">
+                  <div class="spinner-layer spinner-blue">
+                      <div class="circle-clipper left">
+                          <div class="circle"> </div>
+                      </div>
+                      <div class="gap-patch">
+                          <div class="circle"> </div>
+                      </div>
+                      <div class="circle-clipper right">
+                          <div class="circle"></div>
+                      </div>
+                  </div>
+                  <div class="spinner-layer spinner-red">
+                      <div class="circle-clipper left">
+                          <div class="circle"></div>
+                      </div>
+                      <div class="gap-patch">
+                          <div class="circle"> </div>
+                      </div>
+                      <div class="circle-clipper right">
+                          <div class="circle"></div>
+                      </div>
+                  </div>
+                  <div class="spinner-layer spinner-yellow">
+                      <div class="circle-clipper left">
+                          <div class="circle"></div>
+                      </div>
+                      <div class="gap-patch">
+                          <div class="circle"></div>
+                      </div>
+                      <div class="circle-clipper right">
+                          <div class="circle"> </div>
+                      </div>
+                  </div>
+                  <div class="spinner-layer spinner-green">
+                      <div class="circle-clipper left">
+                          <div class="circle"></div>
+                      </div>
+                      <div class="gap-patch">
+                          <div class="circle"></div>
+                      </div>
+                      <div class="circle-clipper right">
+                          <div class="circle"></div>
+                      </div>
+                  </div>
+              </div>
           </div>
-          <div class="spinner-layer spinner-red">
-            <div class="circle-clipper left">
-              <div class="circle"></div>
-            </div>
-            <div class="gap-patch">
-              <div class="circle"> </div>
-            </div>
-            <div class="circle-clipper right">
-              <div class="circle"></div>
-            </div>
-          </div>
-          <div class="spinner-layer spinner-yellow"> 
-            <div class="circle-clipper left">
-              <div class="circle"></div>
-            </div>
-            <div class="gap-patch">
-              <div class="circle"></div>
-            </div>
-            <div class="circle-clipper right">
-              <div class="circle"> </div>
-            </div>
-          </div>
-          <div class="spinner-layer spinner-green"> 
-            <div class="circle-clipper left">
-              <div class="circle"></div>
-            </div>
-            <div class="gap-patch">
-              <div class="circle"></div>
-            </div>
-            <div class="circle-clipper right">
-              <div class="circle"></div>
-            </div>
-          </div>
-        </div>
       </div>
-    </div>
-    <!-- Page-->
-	
-    <div class="page">
-        <div html-file-name="navbar.html"></div>
+      <!-- Page-->
 
-        <div class="row" style="margin-top:6rem; margin-bottom:6rem;">
-            <div class="col-lg-2 col-md-2 col-sm-1"></div>
-            <div class="col-lg-8 col-md-8 col-sm-10" style="border-radius: 10px; background-color: rgba(247, 247, 247, 0.9);">
-                <div class="form-request form-request-modern" style=" background-color:transparent;">
-                    <h4 style="margin:10px;">
-                        Transfer NFT:
-                    </h4>
-                    <div class="networkOptions-secton" sr>
-                        <!-- <select id = "networkOptions" class = "networkOptions-section">
-                    <option value="" disabled selected>Select a network</option>
-                    <option value = 'eth';">Ethereum Mainnet</option>
-                  <option value = 'rinkeby';">Rinkeby Test Network</option>
-                    <option value = 'NULL';">Coming soon</option>
-            </select> -->
+      <div class="page" style="background-color: rgba(221, 238, 247, 0.9); background-image: url(images/sunset.jpeg); ">
+        
+          
+        <div class style="background-color: rgba(255, 255, 255, 0.9);">
 
-                        <input class="form-control" style="height: 2.5rem; margin: 10px;" id="token_id_input"
-                               placeholder="Enter your Token ID that you want to transfer" onchange="SendOurRequest()">
 
-                        <input class="form-control" style="height: 2.5rem; margin: 10px;" id="amount_input"
-                               placeholder="Number of transfer" onchange="SendOurRequest()">
+          <div html-file-name="navbar.html"></div> </div>
+         
 
-                        <input class="form-control" style="height: 2.5rem; margin: 10px;" id="to_address_input"
-                               placeholder="Address that Token will be transferred to" onchange="SendOurRequest()">
 
-                        <button class="btn btn-primary btn-lg btn-block" onclick="SendOurRequest()"
-                                style="margin:10px; width:100%;">Transfer</button>
 
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div html-file-name="footer.html"></div>
-    </div>
-    <!-- Global Mailform Output-->
-    <div class="snackbars" id="form-output-global"> </div>
-    <!-- Javascript-->
-    <script src="js/core.min.js"></script>
-    <script src="js/script.js"></script>
-    <script>
-		window.userWalletAddress = null
-		const loginButton = document.getElementById('loginButton')
+          <div class="row" style="margin-top:6rem; margin-bottom:6rem;   ";>
+              <div class="col-lg-2 col-md-2 col-sm-1"></div>
+              <div class="col-lg-8 col-md-8 col-sm-10" style="border-radius: 10px; background-color: rgba(0, 0, 0, 0.5);">
+                  <div class="form-request form-request-modern" style=" background-color:transparent;">
+                    <button id='loginButton' onclick="" class="button button-sm button-secondary button-nina" style="">Connect Wallet (MetaMask)</button>
+      
+                      <h4 style="margin:10px; color: rgb(251, 181, 19);">
+                          Something exciting is Comming Soon !!!
+                      </h4>
+                      <div class="networkOptions-secton">
+                      <h5 style="margin:20px; color: rgb(255, 255, 255);">Come back soon </h5>
+                       
+                      <img src="../hostingserver/images/bilal.png" alt="">  
+                      </div>
 
-		function toggleButton() {
-		  if (!window.ethereum) {
-			loginButton.innerText = 'MetaMask is not installed'
-			return false
-		  }
 
-		  loginButton.addEventListener('click', loginWithMetaMask)
-		}
+                  </div>
+              </div>
 
-		async function loginWithMetaMask() {
-		  const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' })
-			.catch((e) => {
-			  console.error(e.message)
-			  return
-			})
-		  if (!accounts) { return }
 
-		  window.userWalletAddress = accounts[0]
-		  loginButton.innerText = 'Sign out of MetaMask' + "\n" + window.userWalletAddress.substring(0, 10) + "..."
+           
+  
 
-		  loginButton.removeEventListener('click', loginWithMetaMask)
-		  setTimeout(() => {
-			loginButton.addEventListener('click', signOutOfMetaMask)
-		  }, 200)
-		}
 
-		function signOutOfMetaMask() {
-		  window.userWalletAddress = null
-		  loginButton.innerText = 'Sign in with MetaMask'
+              <!-- Page Body Start Here -->
+              <!-- End  Body Start Here -->
+          </div>
+      </div>
+      <div html-file-name="footer.html"></div>
+      <!-- Global Mailform Output-->
+      <div class="snackbars" id="form-output-global"> </div>
+      <!-- Javascript-->
+      <script src="js/core.min.js"></script>
+      <script src="js/script.js"></script>
+      <script>
+          window.userWalletAddress = null
+          const loginButton = document.getElementById('loginButton')
 
-		  loginButton.removeEventListener('click', signOutOfMetaMask)
-		  setTimeout(() => {
-			loginButton.addEventListener('click', loginWithMetaMask)
-		  }, 200)
-		}
+          function toggleButton() {
+              if (!window.ethereum) {
+                  loginButton.innerText = 'MetaMask is not installed'
+                  return false
+              }
 
-		window.addEventListener('DOMContentLoaded', () => {
-		  toggleButton()
-		});
-	</script>
+              loginButton.addEventListener('click', loginWithMetaMask)
+          }
+
+          async function loginWithMetaMask() {
+              const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' })
+                  .catch((e) => {
+                      console.error(e.message)
+                      return
+                  })
+              if (!accounts) { return }
+
+              window.userWalletAddress = accounts[0]
+              loginButton.innerText = 'Sign out of MetaMask' + "\n" + window.userWalletAddress.substring(0, 10) + "..."
+
+              loginButton.removeEventListener('click', loginWithMetaMask)
+              setTimeout(() => {
+                  loginButton.addEventListener('click', signOutOfMetaMask)
+              }, 200)
+          }
+
+          function signOutOfMetaMask() {
+              window.userWalletAddress = null
+              loginButton.innerText = 'Sign in with MetaMask'
+
+              loginButton.removeEventListener('click', signOutOfMetaMask)
+              setTimeout(() => {
+                  loginButton.addEventListener('click', loginWithMetaMask)
+              }, 200)
+          }
+
+          window.addEventListener('DOMContentLoaded', () => {
+              toggleButton()
+          });
+      </script>
       <script src="js/common.js"></script>
-    <!-- coded by barber-->
+      <script type="text/javascript" src="./main.js"></script>
+      <script type="text/javascript" src="./metamask.js"></script>
+      <!-- coded by barber-->
   </body>
 </html>
