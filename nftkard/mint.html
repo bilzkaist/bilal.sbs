@@ -21,7 +21,7 @@
 			crossorigin="anonymous"></script>
             <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 	<script type="text/javascript" src="js/mint.js"></script>
-	  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;display=swap">
     <meta name="format-detection" content="telephone=no">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -59,8 +59,7 @@
         }
     </style>
   </head>
-  <body>
-
+  <body style="background-color: rgb(3, 12, 29);">
       <!-- Page preloader-->
       <div class="page-loader">
           <div class="page-loader-body">
@@ -114,74 +113,73 @@
       </div>
       <!-- Page-->
 
-      <div class="page" style="background-color: rgba(221, 238, 247, 0.9); background-image: url(images/sunset.jpeg); ">
-        
-          
-        <div class style="background-color: rgba(255, 255, 255, 0.9);">
+      <div class="page">
+        <div>
+          <div html-file-name="navbar.html"></div> 
+        </div>
 
-
-          <div html-file-name="navbar.html"></div> </div>
-         
-
-
-
-          <div class="row" style="margin-top:6rem; margin-bottom:6rem;   ";>
-            <div class="col-lg-2 col-md-2 col-sm-1"></div>
-            <div class="col-lg-8 col-md-8 col-sm-10" style="border-radius: 10px; background-color: rgba(0, 0, 0, 0.5);" id = "controlsContainer">
-                <div class="form-request form-request-modern" style=" background-color:transparent;" id="metaMaskLoginControls">
-                    <div class="networkOptions-secton">
-                        <button id='loginButton' class="btn btn-primary btn-lg btn-block" onclick="LoginMetaMaskClick()" style="margin:10px; width:100%;">
-                            Connect MetaMask
-                        </button>
+        <div style="padding-left: 1rem; padding-right: 1rem;">
+            <div class="row" style="margin-top: 6rem; margin-bottom: 6rem; margin-left: 1rem; margin-right: 1rem;";>
+                <div class="col-lg-3 col-md-3 col-sm-2"></div>
+                <div class="col-lg-6 col-md-6 col-sm-8 atomizeCard" 
+                    style="border-radius: 10px;" id = "controlsContainer">
+                    <div class="form-request form-request-modern" style=" background-color:transparent; padding: 0px;" id="metaMaskLoginControls">
+                        <div class="networkOptions-secton" style="width: 100%;">
+                            <div class="atomizeCardHeading">
+                                Connect MetaMask
+                            </div>
+                            <div class="atomizeCardText">
+                                To start minting, you need to login to your MetaMask
+                            </div>
+                            <button id='loginButton' class="atomizeCardButton" onclick="LoginMetaMaskClick()" style="text-align: left;">
+                                Connect MetaMask 
+                                <b class="atomizeButtonPlusIcon">+</b>
+                            </button>
+                        </div>
                     </div>
-                </div>
-                <div class="form-request form-request-modern" style=" background-color:transparent;"  id="uploadControls">
-                    <h4 style="margin:10px; color: rgb(251, 181, 19);">
-                      Upload Image:
-                    </h4>
-                    <div class="networkOptions-secton" id="uploadControlsDiv">
-                        <input class="form-control" style="height: 2.5rem; margin: 10px;" id="imagename"
-                        placeholder="name">
-                        <input class="form-control" style="height: 2.5rem; margin: 10px;" id="imagedescription"
-                            placeholder="description">
-                        <center>
-                            <img src="images/noimage.jpg" class="img-fluid" style="margin:10px; padding-left: 20%; padding-right: 20%; max-height: 400px;" onclick="loadImage()" id="imgPreview">
-                        </center>
-                        <button id="uploadButton" class="btn btn-primary btn-lg btn-block ethrScanSeaButton" onclick="upload()" style="margin:10px; width:100%;">
-                            Choose File
-                        </button>
-                        <button id="openSeaButton" class="btn btn-primary btn-lg btn-block openSeaButton" onclick="openOnOpenSea()" style="margin:10px; width:100%;">
-                            View on OpenSea
-                        </button>
+                    <div class="form-request form-request-modern" style=" background-color:transparent;" id="uploadControls">
+                        <h4 style="margin:10px; color: rgb(251, 181, 19);">
+                            Upload Image:
+                        </h4>
+                        <div class="networkOptions-secton" id="uploadControlsDiv">
+                            <input class="form-control" style="height: 2.5rem; margin: 10px;" id="imagename"
+                                    placeholder="name">
+                            <input class="form-control" style="height: 2.5rem; margin: 10px;" id="imagedescription"
+                                    placeholder="description">
+                            <center>
+                                <img src="images/noimage.jpg" class="img-fluid" style="margin:10px; padding-left: 20%; padding-right: 20%; max-height: 400px;" onclick="loadImage()" id="imgPreview">
+                            </center>
+                            <button id="uploadButton" class="btn btn-primary btn-lg btn-block ethrScanSeaButton" onclick="upload()" style="margin:10px; width:100%;">
+                                Choose File
+                            </button>
+                            <button id="openSeaButton" class="btn btn-primary btn-lg btn-block openSeaButton" onclick="openOnOpenSea()" style="margin:10px; width:100%;">
+                                View on OpenSea
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
-
-
-         
-
-
-
-            <!-- Page Body Start Here -->
-            <!-- End  Body Start Here -->
         </div>
-      </div>
-      <div html-file-name="footer.html"></div>
+        <!-- Page Body Start Here -->
+        <!-- End  Body Start Here -->
+    </div>
+
+    <div html-file-name="footer.html"></div>
       <!-- Global Mailform Output-->
-      <div class="snackbars" id="form-output-global"> </div>
+    <div class="snackbars" id="form-output-global"> </div>
       <!-- Javascript-->
-      <script src="js/core.min.js"></script>
-      <script src="js/script.js"></script>
-      <script>
-            var openSeaLinkButtonBkp = document.getElementById("openSeaButton");
-            openSeaButton.remove();
-            var uploadControlsBkp = document.getElementById("uploadControls");
-            var imgPreviewDiv = document.getElementById("imgPreview");
-            console.log("existing src: " + imgPreviewDiv.src);
-            uploadControls.remove();
-      </script>
-      <script src="js/common.js"></script>
-      <script type="text/javascript" src="./metamask.js"></script>
+    <script src="js/core.min.js"></script>
+    <script src="js/script.js"></script>
+    <script>
+        var openSeaLinkButtonBkp = document.getElementById("openSeaButton");
+        openSeaButton.remove();
+        var uploadControlsBkp = document.getElementById("uploadControls");
+        var imgPreviewDiv = document.getElementById("imgPreview");
+        console.log("existing src: " + imgPreviewDiv.src);
+        uploadControls.remove();
+    </script>
+    <script src="js/common.js"></script>
+    <script type="text/javascript" src="./metamask.js"></script>
       <!-- coded by barber-->
   </body>
 </html>
