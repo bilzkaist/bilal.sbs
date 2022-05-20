@@ -113,14 +113,14 @@
                             </div>
                             <button id='loginButton' class="atomizeCardButton" onclick="LoginMetaMaskClick()" style="text-align: left;">
                                 Connect MetaMask 
-                                <b class="atomizeButtonPlusIcon">+</b>
+                                <b class="atomizeButtonPlusIcon ">+</b>
                             </button>
                         </div>
                     </div>
-                    <div class="form-request form-request-modern" style=" background-color:transparent;" id="uploadControls">
-                        <h4 class="atomizeCardHeading">
+                    <div class="form-request form-request-modern" style=" background-color:transparent; padding: 0px;" id="uploadControls">
+                        <div class="atomizeCardHeading">
                             Upload Image:
-                        </h4>
+                        </div>
                         <div class="networkOptions-secton" id="uploadControlsDiv">
                             <input class="form-control" style="height: 2.5rem; margin: 10px;" id="imagename"
                                     placeholder="name">
@@ -129,10 +129,10 @@
                             <center>
                                 <img src="images/noimage.jpg" class="img-fluid" style="margin:10px; padding-left: 20%; padding-right: 20%; max-height: 400px;" onclick="loadImage()" id="imgPreview">
                             </center>
-                            <button id="uploadButton" class="btn btn-primary btn-lg btn-block ethrScanSeaButton" onclick="upload()" style="margin:10px; width:100%;">
+                            <button id="uploadButton" class="ethrScanSeaButton" onclick="upload()" style="margin:10px; width:100%;">
                                 Choose File
                             </button>
-                            <button id="openSeaButton" class="btn btn-primary btn-lg btn-block openSeaButton" onclick="openOnOpenSea()" style="margin:10px; width:100%;">
+                            <button id="openSeaButton" class="openSeaButton" onclick="openOnOpenSea()" style="margin:10px; width:100%;">
                                 View on OpenSea
                             </button>
                         </div>
@@ -152,11 +152,11 @@
     <script src="js/script.js"></script>
     <script>
         var openSeaLinkButtonBkp = document.getElementById("openSeaButton");
-        //openSeaButton.remove();
+        openSeaButton.remove();
         var uploadControlsBkp = document.getElementById("uploadControls");
         var imgPreviewDiv = document.getElementById("imgPreview");
         console.log("existing src: " + imgPreviewDiv.src);
-        //uploadControls.remove();
+        uploadControls.remove();
     </script>
     <script src="js/common.js"></script>
     <script type="text/javascript" src="./metamask.js"></script>

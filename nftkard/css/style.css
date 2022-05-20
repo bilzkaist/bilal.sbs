@@ -4534,7 +4534,7 @@ textarea.form-input.form-input-lg {
 
 .form-request {
 	padding: 30px 15px;
-	max-width: 420px;
+	max-width: 1200px;
 	margin-left: auto;
 	margin-right: auto;
 	border-radius: 8px;
@@ -4549,7 +4549,7 @@ textarea.form-input.form-input-lg {
 }
 
 .form-request-modern {
-	max-width: 566px;
+	max-width: 1200px;
 	background-color: rgba(247, 247, 247, 0.9);
 }
 
@@ -15624,7 +15624,6 @@ html.tablet .ui-to-top {
     justify-content: space-between;
     border-radius: .75rem;
 	max-width: 100%;
-
 }
 .atomizeCardButton:hover{
 	background: #7eff00;
@@ -15648,30 +15647,50 @@ html.tablet .ui-to-top {
 }
 .openSeaButton
 {
-	background: rgb(232, 201, 16);
-	border-radius: .75rem;
-	border-width: 0px;
-	transition-duration: 200ms;
-	color: #000;
-	margin-top: 5px;
-	margin-bottom: 5px;
+	-webkit-font-smoothing: antialiased;
+    font-family: "Plus Jakarta Display", Helvetica, Arial, sans-serif;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    height: 2.5rem;
+	width: 100%;
+    cursor: pointer;
+    border: none;
+    background: rgb(24, 255, 0);
+    color: black;
+    font-weight: 200;
+    transition: all 0.4s ease-in-out;
+    font-size: 1.25rem;
+    line-height: 24px;
+    justify-content: space-between;
+    border-radius: .75rem;
+	max-width: 100%;
 }
 .openSeaButton:hover{
-	background-color:#d0b40d;
-	border-color: #d0b40d;
-	color: #000;
+	background: #7eff00;
 } 
 .ethrScanSeaButton
 {
-	background: rgb(24, 255, 0);
-	border-radius: .75rem;
-	border-width: 0px;
-	transition-duration: 200ms;
-	color: #000;
+	-webkit-font-smoothing: antialiased;
+    font-family: "Plus Jakarta Display", Helvetica, Arial, sans-serif;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    height: 2.5rem;
+	width: 100%;
+    cursor: pointer;
+    border: none;
+    background: rgb(232, 201, 16);
+    color: black;
+    font-weight: 200;
+    transition: all 0.4s ease-in-out;
+    font-size: 1.25rem;
+    line-height: 24px;
+    justify-content: space-between;
+    border-radius: .75rem;
+	max-width: 100%;
 }
 .ethrScanSeaButton:hover{
-	background-color:#7eff00;
-	border-color: #7eff00;
+	background: rgb(216, 183, 15);
+	outline-offset: 5px;
 }
 .lg-icon {
 	font-family: 'lg';
