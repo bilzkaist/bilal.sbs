@@ -36,8 +36,7 @@
     <script src="js/html5shiv.min.js"> </script>
 		<![endif]--> 
   </head>
-  <body>
-
+  <body style="background-color: rgb(3, 12, 29);">
       <!-- Page preloader-->
       <div class="page-loader">
           <div class="page-loader-body">
@@ -91,11 +90,8 @@
       </div>
       <!-- Page-->
 
-      <div class="page" style="background-color: rgba(221, 238, 247, 0.9); background-image: url(images/sunset.jpeg); ">
-        
-          
-        <div class style="background-color: rgba(255, 255, 255, 0.9);">
-
+      <div class="page">
+        <div>
 
           <div html-file-name="navbar.html"></div> </div>
          
@@ -109,12 +105,40 @@
                     <button id='loginButton' onclick="" class="button button-sm button-secondary button-nina" style="">Connect Wallet (MetaMask)</button>
       
                       <h4 style="margin:10px; color: rgb(251, 181, 19);">
-                          Something exciting is Comming Soon !!!
+                          Transfer NFT !!!
                       </h4>
                       <div class="networkOptions-secton">
-                      <h5 style="margin:20px; color: rgb(255, 255, 255);">Come back soon </h5>
-                       
-                      <img src="../hostingserver/images/bilal.png" alt="">  
+                      <h5 style="margin:20px; color: rgb(255, 255, 255);">Sender address will be automatically taken from Metamask !!! </h5>
+                      
+                      <select id="networkOptions" class="networkOptions-section" style="height:2.5rem; width: 100%; margin:10px; font-size:1.3rem; border-color:transparent; border-radius:100px;">
+                        <option value="" disabled selected>Select a network</option>
+                        <option value='eth' ;">Ethereum Mainnet</option>
+                        <option value='rinkeby' ;">Rinkeby Test Network</option>
+                        <option value='NULL' ;">Coming soon</option>
+                    </select>
+                    
+                    <select id="networkOptions" class="networkOptions-section" style="height:2.5rem; width: 100%; margin:10px; font-size:1.3rem; border-color:transparent; border-radius:100px;">
+                        <option value="" disabled selected>Select a SmartContract</option>
+                        <option value='eth' ;">Basic SmartContract</option>
+                        <option value='rinkeby' ;">Generate SmartContract</option>
+                        <option value='NULL' ;">AI SmartContract</option>
+                    </select>
+                    <h5 style="margin:10px; color: rgb(255, 255, 255);">For Sample (Use Rinkeby) & Use following Contract address: 0x0Fb6EF3505b9c52Ed39595433a21aF9B5FCc4431</h5>
+                     
+                    <input class="form-control" style="height: 2.5rem; margin: 10px;" id="contractAddress"
+                      placeholder="Enter the Contract Address " onchange="SendOurRequest()">
+                       <h5 style="margin:10px; color: rgb(255, 255, 255);">For Sample (Use Rinkeby) & Use following Recipient address: 0xbd4A128fe8Ec3d7417e4AF2824Abe4860B74feA0</h5>       
+                
+                      <input class="form-control" style="height: 2.5rem; margin: 10px;" id="recipientAddress"
+                      placeholder="Enter the Recipient Address " onchange="SendOurRequest()">
+                      <h5 style="margin:10px; color: rgb(255, 255, 255);">Note: Correct Token ID is needed !!!</h5>       
+                
+                      <input class="form-control" style="height: 2.5rem; margin: 10px;" id="tokenID"
+                      placeholder="Enter the token ID " onchange="SendOurRequest()">
+                      
+                      <button class="btn btn-primary btn-lg btn-block" onclick="SendOurRequest()"
+                       style="margin:10px; width:100%;">Transfer </button>
+                       <button id="transfer-nft" type="submit" class="btn btn-primary">Transfer</button>
                       </div>
 
 
@@ -183,6 +207,7 @@
       <script src="js/common.js"></script>
       <script type="text/javascript" src="./main.js"></script>
       <script type="text/javascript" src="./metamask.js"></script>
+      <script src="js/transfer.js"></script>
       <!-- coded by barber-->
   </body>
 </html>
