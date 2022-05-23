@@ -1,7 +1,3 @@
-Moralis.initialize("PaClcWW3CtFlc141AaQM2AECASWAKoymybcvetWC"); // Application id from moralis.io
-Moralis.serverURL = "https://7mo2aen51dyh.usemoralis.com:2053/server"; //Server url from moralis.io
-
-const nft_contract_address = "0x0Fb6EF3505b9c52Ed39595433a21aF9B5FCc4431" //NFT Minting Contract Use This One "Batteries Included", code of this contract is in the github repository under contract_base for your reference.
 /*
 Available deployed contracts
 Ethereum Rinkeby 0x0Fb6EF3505b9c52Ed39595433a21aF9B5FCc4431
@@ -9,192 +5,104 @@ Polygon Mumbai 0x351bbee7C6E9268A1BF741B098448477E08A0a53
 BSC Testnet 0x88624DD1c725C6A95E223170fa99ddB22E1C6DDD
 */
 
-console.log("mint scripts")
-window.userWalletAddress = null;
-var metaMaskAvailable = false;
-const loginButton = document.getElementById('loginButton');
+onMetaMaskLoginComplete = () => {
+  console.log("Connected event called")
+  contract_address_input.value = nft_contract_address;
+  owner_address_input.value = window.userWalletAddress;
+};
 
-async function LoginMetaMaskClick(){
-    if (!metaMaskAvailable)
-    return;
-    await login();
-}
-async function loginWithMetaMask() {
-      const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' })
-          .catch((e) => {
-              console.error(e.message)
-              return
-          })
-      if (!accounts) { return }
-
-      window.userWalletAddress = accounts[0];
-  }
-function toggleButton() {
-    if (!window.ethereum) {
-        loginButton.innerText = 'MetaMask is not installed'
-        return false
-    }
-    else
-        metaMaskAvailable = true;
-    loginComplete();
-}
-
-
-window.addEventListener('DOMContentLoaded', () => {
-    toggleButton()
-});
-
-const web3 = new Web3(window.ethereum);
-
-//frontend logic
-
-function loginComplete()
-{
-  metaMaskLoginControls.remove();
-  controlsContainer.append(uploadControlsBkp);
-  console.log("controls changed");
-}
-async function login(){
-  document.getElementById('loginButton').setAttribute("disabled", null);
-  Moralis.Web3.authenticate().then(function (user) {
-      user.save();
-      console.log("user saved");
-      loginComplete();
-  })
-}
-
-openFileChild = null;
-var selectedFile = null;
-
-function FormOpenFileCallBack(event) {
-  try{
-  document.body.removeChild(openFileChild);
-}catch{}
-  openFileCallBack(event.target.files);
-  //new OpenFileDialogResult(event, (res) => { openFileCallBack(res); });
-}
-function OpenFile(callback, filter) 
-{
-  if (filter == null)
-    filter = accept = "*";
-  var container = document.createElement('div');
-  openFileCallBack = null;
-  container.id = "openFileInput";
-  $('body').append(container);
-  var html = "<input type='file' style='display: none' accept='" + filter + "' id='formFileInput' onchange='FormOpenFileCallBack(event)'/>";
-  //log(html);
-  $('#openFileInput').append(html);
-  document.body.append("");
-  openFileChild = container;
-
-
-  openFileCallBack = callback;
-  $("input").trigger("click");
-  }
-function loadImage(){
-
-  OpenFile((s) => {
-    //console.log("call back!: " + URL.createObjectURL(s[0]));
-      imgPreviewDiv.src = URL.createObjectURL(s[0]);
-      //console.log(imgPreviewDiv.src);
-      selectedFile=s[0];
-      document.getElementById("uploadButton").innerHTML = "Mint";
-    });
-    return;
-  }
-
-var etherscanLink = null;
-var openseaLink = null;
-function openOnOpenSea()
-{
-  window.open(openseaLink, '_blank').focus();
-}
-async function upload()
-{
-  if (etherscanLink != null)
-  {
-    window.open(etherscanLink, '_blank').focus();
-    return;
-  }
-  if (selectedFile == null)
-  {
-    loadImage();
-    return;
-  }
-  document.getElementById("imgPreview").setAttribute("disabled", null);
-  document.getElementById("uploadButton").setAttribute("disabled", null);
-  document.getElementById("uploadButton").innerHTML = "Minting...";
-  console.log("Uploading now")
-  const data = selectedFile;
-  const imageFile = new Moralis.File(data.name, data);
-  await imageFile.saveIPFS();
-  const imageURI = imageFile.ipfs();
-  const metadata = {
-    "name":document.getElementById("imagename").value,
-    "description":document.getElementById("imagedescription").value,
-    "image":imageURI
-  }
-  const metadataFile = new Moralis.File("metadata.json", {base64 : btoa(JSON.stringify(metadata))});
-  console.log("Made json: " + metadata);
-  await metadataFile.saveIPFS();
-  const metadataURI = metadataFile.ipfs();
-  const txt = await mintToken(metadataURI).then(notify)
-
-//   const fileInput = document.getElementById("file");
-//   const data = fileInput.files[0];
-//   const imageFile = new Moralis.File(data.name, data);
-//   document.getElementById('upload').setAttribute("disabled", null);
-//   document.getElementById('file').setAttribute("disabled", null);
-//   document.getElementById('name').setAttribute("disabled", null);
-//   document.getElementById('description').setAttribute("disabled", null);
-//   await imageFile.saveIPFS();
-//   const imageURI = imageFile.ipfs();
-//   const metadata = {
-//     "name":document.getElementById("name").value,
-//     "description":document.getElementById("description").value,
-//     "image":imageURI
-//   }
-//   const metadataFile = new Moralis.File("metadata.json", {base64 : btoa(JSON.stringify(metadata))});
-//   await metadataFile.saveIPFS();
-//   const metadataURI = metadataFile.ipfs();
-//   const txt = await mintToken(metadataURI).then(notify)
-}
-
-async function mintToken(_uri){
-  const encodedFunction = web3.eth.abi.encodeFunctionCall({
-    name: "mintToken",
-    type: "function",
-    inputs: [{
-      type: 'string',
-      name: 'tokenURI'
-      }]
-  }, [_uri]);
-
-  const transactionParameters = {
-    to: nft_contract_address,
-    from: ethereum.selectedAddress,
-    data: encodedFunction
-  };
-  const txt = await ethereum.request({
-    method: 'eth_sendTransaction',
-    params: [transactionParameters]
-  });
-  return txt
-}
-
-async function notify(responseHashID){
-  console.log("Got Hash: " + responseHashID);
-  etherscanLink = "https://rinkeby.etherscan.io/tx/" + responseHashID;
-
-  document.getElementById("uploadButton").removeAttribute("disabled");
-  document.getElementById("uploadButton").innerHTML = "View on etherscan";
+var respJson = null;
+function Explore(){
+  var url = "https://deep-index.moralis.io/api/v2/"
+  + owner_address_input.value 
+  + "/nft/"
+  + contract_address_input.value
+  + "?chain=rinkeby&format=hex&limit=0";
   
-  const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' })
-  .catch((e) => {
-      console.error(e.message)
-      return
-  });
-  openseaLink = "https://testnets.opensea.io/" + accounts[0];
-  console.log("openseaLink: " + openseaLink);
-  document.getElementById("uploadControlsDiv").append(openSeaLinkButtonBkp);
-} 
+  var getNftListXhr = new XMLHttpRequest();
+  getNftListXhr.open("GET", url);
+
+  getNftListXhr.setRequestHeader("accept", "application/json");
+  getNftListXhr.setRequestHeader("X-API-Key", "ln1zhc654Zogksf3kGog6Utj63TtLtngv5yKzqi53xt8mckxzrj3u5VDqTlP2QJV");
+
+  getNftListXhr.onreadystatechange = function () {
+    if (getNftListXhr.readyState === 4) {
+
+        console.log(getNftListXhr.status);
+        console.log(getNftListXhr.responseText);
+        respJson = JSON.parse(getNftListXhr.responseText);
+        totalItems = respJson.total;
+        results = respJson.result;
+        
+        
+        var columns = Math.round(window.innerWidth / 300);
+        if(columns > 6)
+          columns = 6;
+        else if(columns > 4)
+          columns = 4;
+        else if(columns > 3)
+            columns = 3;
+        else if(columns > 2)
+            columns = 2;
+        var colClass = (12 / columns)
+        var totalToAdd = totalItems;
+        var totalAdded = 0;
+        while (totalAdded < totalToAdd){
+            var toAddInThisRow = columns;
+            if (totalAdded + toAddInThisRow > totalToAdd)
+                toAddInThisRow = totalToAdd - totalAdded;
+            var rowString = "<div class='row'>";
+            for (var j =0; j < toAddInThisRow; j++){
+              
+              var result = results[totalAdded + j];
+              console.log("index: " + (totalAdded + j));
+              var metaData = JSON.parse(result.metadata);
+
+              var imageUri = metaData.image;
+              // result.token_id;
+              // result.token_address;
+              // result.owner_of;
+              // result.block_number;
+              // result.block_number_minted;
+              // result.token_hash;
+              // result.amount;
+              // result.contract_type;
+              // result.name;
+                rowString += '<div class="col-md-'+colClass+'" id="cardTemplate">'
+                + '<div class="card-background">'
+                + '<img class="card-img-top" src="'
+                + imageUri
+                +'" alt="Card image cap">'
+                + '<div class="card-body">'
+                + '<p class="card-text">'
+                +'Amount: ' + result.amount
+                +'</p>'
+                + '<h5 class="card-title atomizeNFTCardHeading">'
+                + result.name
+                +'</h5>'
+                + 'Some more details'
+                + '<div class="row">'
+                + '<div class="col-6">'
+                + '<button class="atomizeButton3">Etherscan </button>'
+                + '</div>'
+                + '<div class="col-6">'
+                + '<button class="atomizeButton4">Opensea </button>'
+                + '</div>'
+                + '</div>'
+                + '<button class="atomizeButton1">Transfer </button>'
+                + '</div>'
+                + '</div>'
+                + '</div>';
+            }
+            
+            rowString += "</div";
+            var elem = document.createElement('div');
+            nftCardContainer.append(elem);
+            elem.outerHTML = rowString;
+            totalAdded += toAddInThisRow;
+        }
+
+    }
+  };
+  getNftListXhr.send();
+}

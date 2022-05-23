@@ -122,17 +122,17 @@
                             Upload Image:
                         </div>
                         <div class="networkOptions-secton" id="uploadControlsDiv">
-                            <input class="form-control" style="height: 2.5rem; margin: 10px;" id="imagename"
+                            <input class="form-control atmomizeFormControl" id="imagename"
                                     placeholder="name">
-                            <input class="form-control" style="height: 2.5rem; margin: 10px;" id="imagedescription"
+                            <input class="form-control atmomizeFormControl" id="imagedescription"
                                     placeholder="description">
                             <center>
                                 <img src="images/noimage.jpg" class="img-fluid" style="margin:10px; padding-left: 20%; padding-right: 20%; max-height: 400px;" onclick="loadImage()" id="imgPreview">
                             </center>
-                            <button id="uploadButton" class="ethrScanSeaButton" onclick="upload()" style="margin:10px; width:100%;">
+                            <button id="uploadButton" class="atomizeButton1" onclick="upload()">
                                 Choose File
                             </button>
-                            <button id="openSeaButton" class="openSeaButton" onclick="openOnOpenSea()" style="margin:10px; width:100%;">
+                            <button id="openSeaButton" class="atomizeButton2" onclick="openOnOpenSea()">
                                 View on OpenSea
                             </button>
                         </div>
@@ -152,11 +152,12 @@
     <script src="js/metamaskLogin.js"></script>
     <script src="js/script.js"></script>
     <script>
-        setupLoginControls(document.getElementById("uploadControls"));
         var openSeaLinkButtonBkp = document.getElementById("openSeaButton");
         openSeaButton.remove();
         var imgPreviewDiv = document.getElementById("imgPreview");
         console.log("existing src: " + imgPreviewDiv.src);
+        
+        setupLoginControls(document.getElementById("uploadControls"));
     </script>
     <script src="js/common.js"></script>
     <script type="text/javascript" src="./metamask.js"></script>

@@ -1,7 +1,7 @@
 Moralis.initialize("PaClcWW3CtFlc141AaQM2AECASWAKoymybcvetWC"); // Application id from moralis.io
 Moralis.serverURL = "https://7mo2aen51dyh.usemoralis.com:2053/server"; //Server url from moralis.io
 
-const nft_contract_address = "0x0Fb6EF3505b9c52Ed39595433a21aF9B5FCc4431" //NFT Minting Contract Use This One "Batteries Included", code of this contract is in the github repository under contract_base for your reference.
+const nft_contract_address = "0x1706f281F65843537FA6FbB636ea4f926B93cFb8" //NFT Minting Contract Use This One "Batteries Included", code of this contract is in the github repository under contract_base for your reference.
 /*
 Available deployed contracts
 Ethereum Rinkeby 0x0Fb6EF3505b9c52Ed39595433a21aF9B5FCc4431
@@ -68,6 +68,8 @@ async function loginComplete()
   MetaMaskLogin_Message.innerText = 'Signed in as '+ window.userWalletAddress.substring(0, 10)+"...";
   MetaMaskLogin_Login.innerText = 'Sign out'
   console.log("Signed in");
+  if (typeof onMetaMaskLoginComplete != "undefined")
+    onMetaMaskLoginComplete();
 }
 async function login(){
     Moralis.Web3.authenticate().then(function (user) {
