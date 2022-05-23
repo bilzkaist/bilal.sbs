@@ -22,10 +22,16 @@ function setupLoginControls(controlsDiv){
     checkIfAlreadySignedIn();
 }
 async function LoginMetaMaskClick(){
-    if (metaMaskAvailable)
+    
+    MetaMaskLogin_Login.setAttribute("disabled", true);
+    if (metaMaskAvailable){        
+        MetaMaskLogin_Login.innerText = "Logging out...";
         logout();
-    else
+    }
+    else {        
+        MetaMaskLogin_Login.innerText = "Logging in...";
         await login();
+    }
 }
 function checkIfAlreadySignedIn() {
     if (!window.ethereum) {
@@ -69,15 +75,19 @@ async function login(){
     console.log("user saved");
     loginComplete();
     });
+    
+    MetaMaskLogin_Login.removeAttribute("disabled");
 }
 async function logout() {
     console.log("Logging out");
     window.userWalletAddress = null;
-    MetaMaskLogin_Heading.innerText = 'Connect MetaMask'
-    MetaMaskLogin_Message.innerText = "You need to login to your MetaMask in order to begin";
-    MetaMaskLogin_Login.innerText = 'Connect MetaMask'
     metaMaskAvailable = false;
     await Moralis.User.logOut();
     var cons = controlsDivBkp;
     cons.remove();
+    MetaMaskLogin_Heading.innerText = 'Connect MetaMask'
+    MetaMaskLogin_Message.innerText = "You need to login to your MetaMask in order to begin";
+    MetaMaskLogin_Login.innerText = 'Connect MetaMask'
+    
+    MetaMaskLogin_Login.removeAttribute("disabled");
 }
