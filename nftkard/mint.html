@@ -104,14 +104,14 @@
                 <div class="col-lg-6 col-md-6 col-sm-8 atomizeCard" 
                     style="border-radius: 10px;" id = "controlsContainer">
                     <div class="form-request form-request-modern" style=" background-color:transparent; padding: 0px;" id="metaMaskLoginControls">
-                        <div class="networkOptions-secton" style="width: 100%;">
-                            <div class="atomizeCardHeading">
+                        <div class="networkOptions-secton" style="width: 100%;" id="MetaMaskLogin_Div">
+                            <div class="atomizeCardHeading" id="MetaMaskLogin_Heading">
                                 Connect MetaMask
                             </div>
-                            <div class="atomizeCardText">
+                            <div class="atomizeCardText" id="MetaMaskLogin_Message">
                                 To start minting, you need to login to your MetaMask
                             </div>
-                            <button id='loginButton' class="atomizeCardButton" onclick="LoginMetaMaskClick()" style="text-align: left;">
+                            <button id='MetaMaskLogin_Login' class="atomizeCardButton" onclick="LoginMetaMaskClick()" style="text-align: left;">
                                 Connect MetaMask 
                                 <b class="atomizeButtonPlusIcon ">+</b>
                             </button>
@@ -149,14 +149,14 @@
     <div class="snackbars" id="form-output-global"> </div>
       <!-- Javascript-->
     <script src="js/core.min.js"></script>
+    <script src="js/metamaskLogin.js"></script>
     <script src="js/script.js"></script>
     <script>
+        setupLoginControls(document.getElementById("uploadControls"));
         var openSeaLinkButtonBkp = document.getElementById("openSeaButton");
         openSeaButton.remove();
-        var uploadControlsBkp = document.getElementById("uploadControls");
         var imgPreviewDiv = document.getElementById("imgPreview");
         console.log("existing src: " + imgPreviewDiv.src);
-        uploadControls.remove();
     </script>
     <script src="js/common.js"></script>
     <script type="text/javascript" src="./metamask.js"></script>
