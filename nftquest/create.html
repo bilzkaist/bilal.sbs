@@ -2,7 +2,11 @@
 <html class="wide wow-animation" lang="en"> 
   <head>
     <!-- Site Title-->
-    <title>Create NFT </title>
+    <title>Coming-Soon - Welcome to the NFT KARD Website</title>
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/moralis/dist/moralis.js"></script>
+   
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 		crossorigin="anonymous"></script>
@@ -15,8 +19,10 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 			integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
 			crossorigin="anonymous"></script>
-	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-	  
+            <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+            <script type="text/javascript" src="js/mint.js"></script>
+            <script type="text/javascript" src="js/create.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;display=swap">
     <meta name="format-detection" content="telephone=no">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -31,9 +37,10 @@
     <div style="background: #212121; padding: 10px 0; box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3); clear: both; text-align:center; position: relative; z-index:1;"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="images/ie8-panel/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
     <script src="js/html5shiv.min.js"> </script>
 		<![endif]--> 
+    <style>
+    </style>
   </head>
   <body style="background-color: rgb(3, 12, 29);">
-
       <!-- Page preloader-->
       <div class="page-loader">
           <div class="page-loader-body">
@@ -89,98 +96,78 @@
 
       <div class="page">
         <div>
-          <div html-file-name="navbar.html"></div> </div>
-          <div class="row" style="margin-top:6rem; margin-bottom:6rem;   ";>
-              <div class="col-lg-2 col-md-2 col-sm-1"></div>
-              <div class="col-lg-8 col-md-8 col-sm-10" style="border-radius: 10px; background-color: rgba(0, 0, 0, 0.5);">
-                  <div class="form-request form-request-modern" style=" background-color:transparent;">
-                    <button id='loginButton' onclick="" class="button button-sm button-secondary button-nina" style="">Connect Wallet (MetaMask)</button>
-      
-                      <h4 style="margin:10px; color: rgb(251, 181, 19);">
-                       Create NFT ----- Omer Tariq  :
+          <div html-file-name="navbar.html"></div> 
+        </div>
 
-                      </h4>
-                      <h5 style="margin:10px; color: rgb(255, 255, 255);">Using AI to create list of the  NFTs</h5>
-                      <div class="networkOptions-secton">
-                   
-                        <input class="form-control" style="height: 2.5rem; margin: 10px;" id="to_address_input"
-                        placeholder="Enter the text to create image " >
-     
-               
-               <button class="btn btn-primary btn-lg btn-block createButton"
-                       style="margin:10px; width:100%;">Create</button>
-                      <!-- <button  type="button"  class = "sbmtButton"> Generate </button>-->
-                      </div>
+        <div style="padding-left: 1rem; padding-right: 1rem;">
+            <div class="row" style="margin-top: 6rem; margin-bottom: 6rem; margin-left: 1rem; margin-right: 1rem;";>
+                <div class="col-lg-3 col-md-3 col-sm-2"></div>
+                <div class="col-lg-6 col-md-6 col-sm-8 atomizeCard" 
+                    style="border-radius: 10px;" id = "controlsContainer">
+                    <div class="form-request form-request-modern" style=" background-color:transparent; padding: 0px;" id="metaMaskLoginControls">
+                        <div class="networkOptions-secton" style="width: 100%;" id="MetaMaskLogin_Div">
+                            <div class="atomizeCardHeading" id="MetaMaskLogin_Heading">
+                                Connect MetaMask
+                            </div>
+                            <div class="atomizeCardText" id="MetaMaskLogin_Message">
+                                To start minting, you need to login to your MetaMask
+                            </div>
+                            <input class="form-control atmomizeFormControl" id="createAIText"
+                                    placeholder="Enter the scenery text for AI Image Generation">
+                            <button id="uploadButton" class="atomizeButton1" onclick="createAIImage()">
+                                Create AI Image 
+                            </button>
+                            <div>....................................     </div>
+                            <button id='MetaMaskLogin_Login' class="atomizeCardButton" onclick="LoginMetaMaskClick()" style="text-align: left;">
+                                Connect MetaMask 
+                                <b class="atomizeButtonPlusIcon ">+</b>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-request form-request-modern" style=" background-color:transparent; padding: 0px;" id="uploadControls">
+                        <div class="atomizeCardHeading">
+                            Upload Image:
+                        </div>
+                        <div class="networkOptions-secton" id="uploadControlsDiv">
+                            <input class="form-control atmomizeFormControl" id="imagename"
+                                    placeholder="name">
+                            <input class="form-control atmomizeFormControl" id="imagedescription"
+                                    placeholder="description">
+                            <center>
+                                <img src="images/noimage.jpg" class="img-fluid" style="margin:10px; padding-left: 20%; padding-right: 20%; max-height: 400px;" onclick="loadImage()" id="imgPreview">
+                            </center>
+                            <button id="uploadButton" class="atomizeButton1" onclick="upload()">
+                                Choose File
+                            </button>
+                            <button id="openSeaButton" class="atomizeButton2" onclick="openOnOpenSea()">
+                                View on OpenSea
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Page Body Start Here -->
+        <!-- End  Body Start Here -->
+    </div>
 
-
-                  </div>
-              </div>
-       
-
-
-           
-  
-
-
-              <!-- Page Body Start Here -->
-              <!-- End  Body Start Here -->
-          </div>
-          <div id = "picture">
-
-          </div>
-      </div>
-      <div html-file-name="footer.html"></div>
+    <div html-file-name="footer.html"></div>
       <!-- Global Mailform Output-->
-      <div class="snackbars" id="form-output-global"> </div>
+    <div class="snackbars" id="form-output-global"> </div>
       <!-- Javascript-->
-      <script src="js/core.min.js"></script>
-      <script src="js/script.js"></script>
-      <script>
-          window.userWalletAddress = null
-          const loginButton = document.getElementById('loginButton')
-
-          function toggleButton() {
-              if (!window.ethereum) {
-                  loginButton.innerText = 'MetaMask is not installed'
-                  return false
-              }
-
-              loginButton.addEventListener('click', loginWithMetaMask)
-          }
-
-          async function loginWithMetaMask() {
-              const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' })
-                  .catch((e) => {
-                      console.error(e.message)
-                      return
-                  })
-              if (!accounts) { return }
-
-              window.userWalletAddress = accounts[0]
-              loginButton.innerText = 'Sign out of MetaMask' + "\n" + window.userWalletAddress.substring(0, 10) + "..."
-
-              loginButton.removeEventListener('click', loginWithMetaMask)
-              setTimeout(() => {
-                  loginButton.addEventListener('click', signOutOfMetaMask)
-              }, 200)
-          }
-
-          function signOutOfMetaMask() {
-              window.userWalletAddress = null
-              loginButton.innerText = 'Sign in with MetaMask'
-
-              loginButton.removeEventListener('click', signOutOfMetaMask)
-              setTimeout(() => {
-                  loginButton.addEventListener('click', loginWithMetaMask)
-              }, 200)
-          }
-
-          window.addEventListener('DOMContentLoaded', () => {
-              toggleButton()
-          });
-      </script>
-      <script src="js/common.js"></script>
-      <script src="create.js"></script>
+    <script src="js/core.min.js"></script>
+    <script src="js/metamaskLogin.js"></script>
+    <script src="js/script.js"></script>
+    <script>
+        var openSeaLinkButtonBkp = document.getElementById("openSeaButton");
+        openSeaButton.remove();
+        var imgPreviewDiv = document.getElementById("imgPreview");
+        console.log("existing src: " + imgPreviewDiv.src);
+        
+        setupLoginControls(document.getElementById("uploadControls"));
+    </script>
+    <script src="js/common.js"></script>
+    <script type="text/javascript" src="./metamask.js"></script>
       <!-- coded by barber-->
   </body>
 </html>
