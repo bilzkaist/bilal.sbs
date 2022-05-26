@@ -27,6 +27,36 @@
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/fonts.css">
+    <style>
+        #pictures{
+            display:flex;
+            align-items:stretch;
+            justify-content:space-evenly;
+            flex-wrap: wrap;
+          }
+          .nftPictures{
+            border: 5px solid gray;
+          }
+          .listButtons{
+            display: flex;
+            align-items:stretch;
+            justify-content:space-evenly;
+            flex-wrap: wrap;
+            margin-top: 5px;
+          }
+          #buttonNFT1, #buttonNFT11, #buttonNFT2, #buttonNFT12, #buttonNFT3, #buttonNFT13{
+              background-color: orange;
+              color: white;
+              border-radius: 8px;
+              width:200px;
+              margin-bottom: 10px;
+          }
+
+          #buttonNFT1:hover, #buttonNFT11:hover, #buttonNFT2:hover, #buttonNFT12:hover, #buttonNFT3:hover, #buttonNFT13:hover{
+            transform:scale(1.05);
+            background-color: #2C20C0;
+          }
+    </style>
 		<!--[if lt IE 10]>
     <div style="background: #212121; padding: 10px 0; box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3); clear: both; text-align:center; position: relative; z-index:1;"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="images/ie8-panel/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
     <script src="js/html5shiv.min.js"> </script>
@@ -102,15 +132,15 @@
                     <button id='loginButton' onclick="" class="button button-sm button-secondary button-nina" style="">Connect Wallet (MetaMask)</button>
       
                     <h4 style="margin:10px; color: rgb(251, 181, 19);">
-                        Create NFT :
+                        Generate NFT :
  
                        </h4>
-                       <h5 style="margin:10px; color: rgb(255, 255, 255);">Using AI to create list of the  NFTs</h5>
+                       <h5 style="margin:10px; color: rgb(255, 255, 255);">Template-based NFT Generation</h5>
                        <div class="networkOptions-secton">
                         <input class="form-control" style="height: 2.5rem; margin: 10px;" id="keywords"
-                        placeholder="keywords" onchange="SendOurRequest()">
+                        placeholder="keywords" >
 
-                    <select id="numberOfImages" name="numberOfImage" class="form-control" onchange="getSelectedValue();" style="height: 3rem; margin: 10px; ">
+                    <select id="numberOfImages" name="numberOfImage" class="form-control" style="height: 3rem; margin: 10px; ">
                         <option value="0">Number Of Images</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -124,16 +154,15 @@
                         <option value="10">10</option>
                     </select>
                     <input class="form-control" style="height: 2.5rem; margin: 10px;" id="description"
-                            placeholder="description" onchange="SendOurRequest()">
+                            placeholder="description" >
 
-                    <button class="btn btn-primary btn-lg btn-block" onclick="SendOurRequest()"
+                    <button class="btn btn-primary btn-lg btn-block sbmtButton" 
                             style="margin:10px; width:100%;">
                         Generate
                     </button>
 
                       </div>
-
-
+                      
                   </div>
               </div>
 
@@ -145,6 +174,7 @@
               <!-- Page Body Start Here -->
               <!-- End  Body Start Here -->
           </div>
+          <div id = pictures></div>
       </div>
       <div html-file-name="footer.html"></div>
       <!-- Global Mailform Output-->
