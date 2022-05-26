@@ -138,7 +138,7 @@ async function notify(responseHashID){
 function createAIImage(){
     const textAI =document.getElementById('createAIText').value;
     console.log(textAI);
-    alert("Omer Alert !!!" + " " +textAI);
+    alert("Alert !!!" + " " +textAI);
 
 }
 
