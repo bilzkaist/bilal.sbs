@@ -48,7 +48,7 @@ function addNew(){
 
     userAccount = window.userWalletAddress
     let numbOfImages = parseInt(getSelectedValue());
-    document.getElementById("footerPart").style.marginTop = "0px"
+    //document.getElementById("footerPart").style.marginTop = "0px"
 
 let requestOptions = {
       method: 'POST',

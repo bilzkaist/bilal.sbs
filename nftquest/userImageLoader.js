@@ -35,7 +35,7 @@ for(var i = 0; i < imageItems.length; i++) {
 
        
     }
-    if(imageItems.length > 0 && imageItems.length <= 10)document.getElementById("footerPart").style.marginTop = "20px";
+    // if(imageItems.length > 0 && imageItems.length <= 10)document.getElementById("footerPart").style.marginTop = "20px";
     });
 
 

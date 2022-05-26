@@ -21,7 +21,7 @@
 			crossorigin="anonymous"></script>
             <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
             <script type="text/javascript" src="js/mint.js"></script>
-            <script type="text/javascript" src="js/create.js"></script>
+          
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;display=swap">
     <meta name="format-detection" content="telephone=no">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
@@ -66,7 +66,7 @@
             h2.headertext {
               text-align: center;
             }
-            .sbmtButton{
+            /* .sbmtButton{
                 color:black;
                 border: none;
                 background-color: orange;
@@ -77,7 +77,7 @@
                 line-height: 0.0;
                 height:30px;
                 width:250px;
-            }
+            } */
       
             .sbmtButton:hover{
               transform:scale(1.05);
@@ -209,27 +209,24 @@
                     style="border-radius: 10px;" id = "controlsContainer">
                     <div class="form-request form-request-modern" style=" background-color:transparent; padding: 0px;" id="metaMaskLoginControls">
                         <div class="networkOptions-secton" style="width: 100%;" id="MetaMaskLogin_Div">
-                            <div class="atomizeCardHeading" id="MetaMaskLogin_Heading">
-                                Connect MetaMask
-                            </div>
-                            <div class="atomizeCardText" id="MetaMaskLogin_Message">
-                                To start minting, you need to login to your MetaMask
-                            </div>
+                            
                             <button id='loginButton' onclick="" class="button button-sm button-secondary button-nina" style>Connect Wallet (MetaMask)</button>
+                            <h4 style="margin:10px; color: rgb(251, 181, 19);">
+                                Create NFT :
+         
+                               </h4>
+                               <h5 style="margin:10px; color: rgb(255, 255, 255);">AI-based NFT Generation</h5>
                             <input type="text" class="form-control atmomizeFormControl" id="keywords"
                                     placeholder="Enter the text related to the scenery ">
-                            <select id = "numberOfImages" name = "numberOfImage" class = "form-inputs" onchange = "getSelectedValue();">
+                            <select id = "numberOfImages" name = "numberOfImage" class = "form-control atmomizeFormControl" style="height: 3rem; " onchange = "getSelectedValue();">
                                 <option value = "0">Number Of Images</option>
                                 <option value = "1">1</option>  
                                 <option value = "2">2</option>  
                                 <option value = "3">3</option>            
-                                </select><br><br>
-                            <button type="button"  class = "sbmtButton" id="sbmtButton">Create AI Image </button>
+                                </select>
+                            <button type="button"  class = "btn btn-primary btn-lg btn-block sbmtButton" style=" width:100%;">Create AI Image </button>
                             <div>....................................     </div>
-                            <button id='MetaMaskLogin_Login' class="atomizeCardButton" onclick="LoginMetaMaskClick()" style="text-align: left;">
-                                Connect MetaMask 
-                                <b class="atomizeButtonPlusIcon ">+</b>
-                            </button>
+                    
                         </div>
                     </div>
                     
@@ -248,25 +245,7 @@
         <!-- End  Body Start Here -->
     </div>
 
-    <footer class="section page-footer page-footer-minimal novi-background bg-cover text-center bg-gray-darker" id = "footerPart" >
-        <div class="container container-wide">
-          <div class="row row-fix justify-content-sm-center align-items-md-center row-30">
-            <div class="col-md-10 col-lg-7 col-xl-4 text-xl-left"><a href="index.html"><img class="inverse-logo" src="images/bilalsbslogo.png" alt="" width="208" height="46"/></a></div>
-            <div class="col-md-10 col-lg-7 col-xl-4">
-              <p class="right">&#169;&nbsp;<span class="copyright-year"></span> All Rights Reserved. Development&nbsp;by&nbsp;<a href="https://bilal.sbs">Bilal Smart Blockchain Solutions</a></p>
-            </div>
-            <div class="col-md-10 col-lg-7 col-xl-4 text-xl-right">
-              <ul class="group-xs group-middle"> 
-                <li><a class="icon novi-icon icon-md-middle icon-circle icon-secondary-5-filled mdi mdi-facebook" href="#"></a></li>
-                <li><a class="icon novi-icon icon-md-middle icon-circle icon-secondary-5-filled mdi mdi-twitter" href="#"></a></li>
-                <li><a class="icon novi-icon icon-md-middle icon-circle icon-secondary-5-filled mdi mdi-instagram" href="#"></a></li>
-                <li><a class="icon novi-icon icon-md-middle icon-circle icon-secondary-5-filled mdi mdi-google" href="#"></a></li>
-                <li><a class="icon novi-icon icon-md-middle icon-circle icon-secondary-5-filled mdi mdi-linkedin" href="#"></a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </footer>
+
     <!-- <div html-file-name="footer.html"></div> -->
       <!-- Global Mailform Output-->
     <div class="snackbars" id="form-output-global"> </div>
