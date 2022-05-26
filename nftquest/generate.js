@@ -1,3 +1,5 @@
+
+
 const btn = document.querySelector(".sbmtButton");
 btn.addEventListener("click",deletePrevious);
 btn.addEventListener("click",addNew);
@@ -59,28 +61,37 @@ const loadNFTImages = async (data) => {
 
 console.log(data)
 imageItems = data.items
+let divOfPictureAndButton = new Array(imageItems.length);
+let divOfButton = new Array(imageItems.length);
 console.log(imageItems)
 for(var i = 0; i < imageItems.length; i++) {
 
-        
+        divOfPictureAndButton[i] = document.createElement("div");
         let pictureURL = imageItems[i].img;
         let divOfPicture = document.createElement("div");
         let NFTimage = document.createElement("img");
         let imgID = (i+1).toString() + "NFT";
         NFTimage.setAttribute("src",pictureURL);
         NFTimage.setAttribute("alt","snake");
+        NFTimage.setAttribute("class","nftPictures");
         NFTimage.setAttribute("id",imgID);
+        NFTimage.setAttribute("width","450px");
         NFTimage.setAttribute("onclick","findID(this)");
-        divContainer.append(divOfPicture);
+        divContainer.append(divOfPictureAndButton[i]);
+        divOfPictureAndButton[i].append(divOfPicture);
         divOfPicture.append(NFTimage);
 
-        let buttonName = "buttonNFT" + (i+1).toString();
+        divOfButton[i] = document.createElement("div");
+        divOfPictureAndButton[i].append(divOfButton[i]);
+        let buttonID = "buttonNFT" + (i+1).toString();
+        let buttonName = "NFT " + (i+1).toString();
         let button = document.createElement("button");
-        button.innerHTML = "Add to list";
+        button.innerHTML = buttonName;
         divOfPicture.append(document.createElement('br'));
-        divOfPicture.append(button);
+        divOfButton[i].append(button);
+        divOfButton[i].setAttribute("class","listButtons");
         button.setAttribute("class","buybutton");
-        button.setAttribute("id",buttonName);
+        button.setAttribute("id",buttonID);
 
 	let jsonURL = imageItems[i].json
 
@@ -88,5 +99,5 @@ for(var i = 0; i < imageItems.length; i++) {
 
        
     }
-    if(imageItems.length > 0 && imageItems.length <= 10)document.getElementById("footerPart").style.marginTop = "20px";
+    //if(imageItems.length > 0 && imageItems.length <= 10)document.getElementById("footerPart").style.marginTop = "20px";
 }

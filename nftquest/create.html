@@ -37,8 +37,111 @@
     <div style="background: #212121; padding: 10px 0; box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3); clear: both; text-align:center; position: relative; z-index:1;"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="images/ie8-panel/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
     <script src="js/html5shiv.min.js"> </script>
 		<![endif]--> 
-    <style>
-    </style>
+        <style>
+
+            body {
+              background-color: #BEBEBE;
+            }
+      
+            #mainbody{
+              padding-left: 40%;
+              background-color: #f5f5f5;
+              padding-bottom: 50px;
+              padding-top: 50px;
+            }
+            #generateNFTMessage{
+                color: white;
+            }
+            #nftFORM{
+                margin-left: 45px;
+                padding-right: 50px;
+                padding-top: 20px;
+            }
+            .form-inputs{
+                text-align: center;
+                height:30px;
+                width:250px;
+            }
+      
+            h2.headertext {
+              text-align: center;
+            }
+            .sbmtButton{
+                color:black;
+                border: none;
+                background-color: orange;
+                text-align: center;
+                font-family:'Courier New', Courier, monospace;
+                border-radius: 12px;
+                font-size: 25px;
+                line-height: 0.0;
+                height:30px;
+                width:250px;
+            }
+      
+            .sbmtButton:hover{
+              transform:scale(1.05);
+              background-color: #2C20C0;
+              color:white;
+            }
+      
+            #pictures{
+              display:flex;
+              align-items:stretch;
+              justify-content:space-evenly;
+              flex-wrap: wrap;
+            }
+      
+            /* img{
+              width:500px;
+              margin-top: 20px;
+            } */
+      
+            img:hover{
+              transform:scale(1.05);
+            }
+      
+            .buybutton{
+              width:150px;
+              text-align: center;
+              background-color: orange;
+              color:white;
+              margin-left: 175px;;
+              margin-top: 20px;
+              border: none;
+              border-radius: 8px;
+            }
+      
+            .buybutton:hover{
+              transform:scale(1.05);
+              background-color: #2C20C0;
+            }
+           
+       #loading {
+          width: 2rem;
+          height: 2rem;
+          border: 5px solid #f3f3f3;
+          border-top: 6px solid #9c41f2;
+          border-radius: 100%;
+          margin: auto;
+          visibility: hidden;
+          animation: spin 1s infinite linear;
+      }
+      #loading.display {
+          visibility: visible;
+      }
+      @keyframes spin {
+          from {
+              transform: rotate(0deg);
+          }
+          to {
+              transform: rotate(360deg);
+          }
+      }
+      
+            
+      
+        </style>
   </head>
   <body style="background-color: rgb(3, 12, 29);">
       <!-- Page preloader-->
@@ -112,11 +215,16 @@
                             <div class="atomizeCardText" id="MetaMaskLogin_Message">
                                 To start minting, you need to login to your MetaMask
                             </div>
-                            <input class="form-control atmomizeFormControl" id="createAIText"
-                                    placeholder="Enter the scenery text for AI Image Generation">
-                            <button id="uploadButton" class="atomizeButton1" onclick="createAIImage()">
-                                Create AI Image 
-                            </button>
+                            <button id='loginButton' onclick="" class="button button-sm button-secondary button-nina" style>Connect Wallet (MetaMask)</button>
+                            <input type="text" class="form-control atmomizeFormControl" id="keywords"
+                                    placeholder="Enter the text related to the scenery ">
+                            <select id = "numberOfImages" name = "numberOfImage" class = "form-inputs" onchange = "getSelectedValue();">
+                                <option value = "0">Number Of Images</option>
+                                <option value = "1">1</option>  
+                                <option value = "2">2</option>  
+                                <option value = "3">3</option>            
+                                </select><br><br>
+                            <button type="button"  class = "sbmtButton" id="sbmtButton">Create AI Image </button>
                             <div>....................................     </div>
                             <button id='MetaMaskLogin_Login' class="atomizeCardButton" onclick="LoginMetaMaskClick()" style="text-align: left;">
                                 Connect MetaMask 
@@ -124,34 +232,42 @@
                             </button>
                         </div>
                     </div>
-                    <div class="form-request form-request-modern" style=" background-color:transparent; padding: 0px;" id="uploadControls">
-                        <div class="atomizeCardHeading">
-                            Upload Image:
-                        </div>
-                        <div class="networkOptions-secton" id="uploadControlsDiv">
-                            <input class="form-control atmomizeFormControl" id="imagename"
-                                    placeholder="name">
-                            <input class="form-control atmomizeFormControl" id="imagedescription"
-                                    placeholder="descript/ion">
-                            <center>
-                                <img src="images/noimage.jpg" class="img-fluid" style="margin:10px; padding-left: 20%; padding-right: 20%; max-height: 400px;" onclick="loadImage()" id="imgPreview">
-                            </center>
-                            <button id="uploadButton" class="atomizeButton1" onclick="upload()">
-                                Choose File
-                            </button>
-                            <button id="openSeaButton" class="atomizeButton2" onclick="openOnOpenSea()">
-                                View on OpenSea
-                            </button>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
-        </div>
+        </div> 
+        <div id="loading"></div>
+        <div id = "pictures">
+
+        </div> 
+
+
+
+
         <!-- Page Body Start Here -->
         <!-- End  Body Start Here -->
     </div>
 
-    <div html-file-name="footer.html"></div>
+    <footer class="section page-footer page-footer-minimal novi-background bg-cover text-center bg-gray-darker" id = "footerPart" >
+        <div class="container container-wide">
+          <div class="row row-fix justify-content-sm-center align-items-md-center row-30">
+            <div class="col-md-10 col-lg-7 col-xl-4 text-xl-left"><a href="index.html"><img class="inverse-logo" src="images/bilalsbslogo.png" alt="" width="208" height="46"/></a></div>
+            <div class="col-md-10 col-lg-7 col-xl-4">
+              <p class="right">&#169;&nbsp;<span class="copyright-year"></span> All Rights Reserved. Development&nbsp;by&nbsp;<a href="https://bilal.sbs">Bilal Smart Blockchain Solutions</a></p>
+            </div>
+            <div class="col-md-10 col-lg-7 col-xl-4 text-xl-right">
+              <ul class="group-xs group-middle"> 
+                <li><a class="icon novi-icon icon-md-middle icon-circle icon-secondary-5-filled mdi mdi-facebook" href="#"></a></li>
+                <li><a class="icon novi-icon icon-md-middle icon-circle icon-secondary-5-filled mdi mdi-twitter" href="#"></a></li>
+                <li><a class="icon novi-icon icon-md-middle icon-circle icon-secondary-5-filled mdi mdi-instagram" href="#"></a></li>
+                <li><a class="icon novi-icon icon-md-middle icon-circle icon-secondary-5-filled mdi mdi-google" href="#"></a></li>
+                <li><a class="icon novi-icon icon-md-middle icon-circle icon-secondary-5-filled mdi mdi-linkedin" href="#"></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </footer>
+    <!-- <div html-file-name="footer.html"></div> -->
       <!-- Global Mailform Output-->
     <div class="snackbars" id="form-output-global"> </div>
       <!-- Javascript-->
@@ -159,15 +275,59 @@
     <script src="js/metamaskLogin.js"></script>
     <script src="js/script.js"></script>
     <script>
-        var openSeaLinkButtonBkp = document.getElementById("openSeaButton");
-        openSeaButton.remove();
-        var imgPreviewDiv = document.getElementById("imgPreview");
-        console.log("existing src: " + imgPreviewDiv.src);
-        
-        setupLoginControls(document.getElementById("uploadControls"));
-    </script>
+		const loginButton = document.getElementById('loginButton')
+
+		function toggleButton() {
+		  if (!window.ethereum) {
+			loginButton.innerText = 'MetaMask is not installed'
+			return false
+		  }
+
+		  loginButton.addEventListener('click', loginWithMetaMask)
+
+		  if (window.userWalletAddress == null){
+     			alert("Please log in to your metamask wallet");
+			return;
+    		  }
+
+		}
+
+		async function loginWithMetaMask() {
+		  const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' })
+			.catch((e) => {
+			  console.error(e.message)
+			  return
+			})
+		  if (!accounts) { return }
+
+		  window.userWalletAddress = accounts[0]
+		  loginButton.innerText = 'Sign out of MetaMask' + "\n" + window.userWalletAddress.substring(0, 10) + "...";
+	              uILoader(accounts[0], 'ai');
+
+		  loginButton.removeEventListener('click', loginWithMetaMask)
+		  setTimeout(() => {
+			loginButton.addEventListener('click', signOutOfMetaMask)
+		  }, 200)
+		}
+
+		function signOutOfMetaMask() {
+		  window.userWalletAddress = null
+		  loginButton.innerText = 'Sign in with MetaMask'
+
+		  loginButton.removeEventListener('click', signOutOfMetaMask)
+		  setTimeout(() => {
+			loginButton.addEventListener('click', loginWithMetaMask)
+		  }, 200)
+		}
+
+		window.addEventListener('DOMContentLoaded', () => {
+		  toggleButton()
+		});
+	</script>
     <script src="js/common.js"></script>
     <script type="text/javascript" src="./metamask.js"></script>
+    <script src="js/create.js"></script>
+    <script src="userImageLoader.js"></script>
       <!-- coded by barber-->
   </body>
 </html>

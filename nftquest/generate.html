@@ -44,7 +44,7 @@
             flex-wrap: wrap;
             margin-top: 5px;
           }
-          #buttonNFT1, #buttonNFT11, #buttonNFT2, #buttonNFT12, #buttonNFT3, #buttonNFT13{
+          .buybutton{
               background-color: orange;
               color: white;
               border-radius: 8px;
@@ -52,7 +52,7 @@
               margin-bottom: 10px;
           }
 
-          #buttonNFT1:hover, #buttonNFT11:hover, #buttonNFT2:hover, #buttonNFT12:hover, #buttonNFT3:hover, #buttonNFT13:hover{
+          .buybutton:hover{
             transform:scale(1.05);
             background-color: #2C20C0;
           }
@@ -137,8 +137,7 @@
                        </h4>
                        <h5 style="margin:10px; color: rgb(255, 255, 255);">Template-based NFT Generation</h5>
                        <div class="networkOptions-secton">
-                        <input class="form-control" style="height: 2.5rem; margin: 10px;" id="keywords"
-                        placeholder="keywords" >
+                        
 
                     <select id="numberOfImages" name="numberOfImage" class="form-control" style="height: 3rem; margin: 10px; ">
                         <option value="0">Number Of Images</option>
@@ -153,8 +152,7 @@
                         <option value="9">9</option>
                         <option value="10">10</option>
                     </select>
-                    <input class="form-control" style="height: 2.5rem; margin: 10px;" id="description"
-                            placeholder="description" >
+                    
 
                     <button class="btn btn-primary btn-lg btn-block sbmtButton" 
                             style="margin:10px; width:100%;">
