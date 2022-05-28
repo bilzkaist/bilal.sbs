@@ -56,24 +56,41 @@ async function upload()
     loadImage();
     return;
   }
-  document.getElementById("imgPreview").setAttribute("disabled", null);
-  document.getElementById("uploadButton").setAttribute("disabled", null);
-  document.getElementById("uploadButton").innerHTML = "Minting...";
-  console.log("Uploading now")
-  const data = selectedFile;
-  const imageFile = new Moralis.File(data.name, data);
-  await imageFile.saveIPFS();
-  const imageURI = imageFile.ipfs();
-  const metadata = {
-    "name":document.getElementById("imagename").value,
-    "description":document.getElementById("imagedescription").value,
-    "image":imageURI
+  const message = document.getElementById("p01");
+  message.innerHTML = "";
+  while(1){
+    try{
+      document.getElementById("imgPreview").setAttribute("disabled", null);
+      document.getElementById("uploadButton").setAttribute("disabled", null);
+      document.getElementById("uploadButton").innerHTML = "Minting...";
+      console.log("Uploading now")
+      const data = selectedFile;
+      const imageFile = new Moralis.File(data.name, data);
+      await imageFile.saveIPFS();
+      const imageURI = imageFile.ipfs();
+      const metadata = {
+      "name":document.getElementById("imagename").value,
+      "description":document.getElementById("imagedescription").value,
+      "image":imageURI
+      }
+      const metadataFile = new Moralis.File("metadata.json", {base64 : btoa(JSON.stringify(metadata))});
+      console.log("Made json: " + metadata);
+      await metadataFile.saveIPFS();
+      const metadataURI = metadataFile.ipfs();
+      const txt = await mintToken(metadataURI).then(notify)
+      message.innerHTML = "";
+      break;
+    }
+    catch(error){
+      document.getElementById("uploadButton").innerHTML = "Mint";
+      message.innerHTML = "Please give name and description in English!";
+    }
   }
-  const metadataFile = new Moralis.File("metadata.json", {base64 : btoa(JSON.stringify(metadata))});
-  console.log("Made json: " + metadata);
-  await metadataFile.saveIPFS();
-  const metadataURI = metadataFile.ipfs();
-  const txt = await mintToken(metadataURI).then(notify)
+
+  
+    
+    
+  
 
 //   const fileInput = document.getElementById("file");
 //   const data = fileInput.files[0];
