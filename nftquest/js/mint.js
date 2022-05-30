@@ -60,13 +60,16 @@ async function upload()
   message.innerHTML = "";
   while(1){
     try{
+      console.log("here");
       document.getElementById("imgPreview").setAttribute("disabled", null);
       document.getElementById("uploadButton").setAttribute("disabled", null);
       document.getElementById("uploadButton").innerHTML = "Minting...";
-      console.log("Uploading now")
+      console.log("Uploading now");
       const data = selectedFile;
-      const imageFile = new Moralis.File(data.name, data);
-      await imageFile.saveIPFS();
+      let name = data.name.replace(/[^.a-zA-Z]/g, '');
+      console.log(name);
+      const imageFile = new Moralis.File(name, {base64 : btoa(JSON.stringify(data))});
+      await imageFile.saveIPFS({useMasterKey:true});
       const imageURI = imageFile.ipfs();
       const metadata = {
       "name":document.getElementById("imagename").value,
@@ -75,17 +78,26 @@ async function upload()
       }
       const metadataFile = new Moralis.File("metadata.json", {base64 : btoa(JSON.stringify(metadata))});
       console.log("Made json: " + metadata);
-      await metadataFile.saveIPFS();
+      await metadataFile.saveIPFS({useMasterKey:true});
       const metadataURI = metadataFile.ipfs();
-      const txt = await mintToken(metadataURI).then(notify)
+      const txt = await mintToken(metadataURI).then(notify);
       message.innerHTML = "";
       break;
     }
     catch(error){
+      if (error.code === 4001) {
+        // EIP-1193 userRejectedRequest error
+        console.log('Request rejected by user.');
+        message.innerHTML = "You rejected the request. Please refresh the page and try again.";
+        break;
+      } else {
+        console.error(error);
+      }
       document.getElementById("uploadButton").innerHTML = "Mint";
       message.innerHTML = "Please give name and description in English!";
     }
   }
+
 
   
     
