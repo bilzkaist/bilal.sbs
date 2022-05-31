@@ -18,6 +18,7 @@ function Explore(){
   + "/nft/"
   + contract_address_input.value
   + "?chain=rinkeby&format=hex&limit=0";
+
   
   var getNftListXhr = new XMLHttpRequest();
   getNftListXhr.open("GET", url);
@@ -31,7 +32,9 @@ function Explore(){
         console.log(getNftListXhr.status);
         console.log(getNftListXhr.responseText);
         respJson = JSON.parse(getNftListXhr.responseText);
-        totalItems = respJson.total;
+        console.log(respJson.total);
+        console.log(respJson.result.length);
+        totalItems = respJson.result.length;
         results = respJson.result;
         
         
