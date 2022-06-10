@@ -68,7 +68,7 @@ async function upload()
       const data = selectedFile;
       let name = data.name.replace(/[^.a-zA-Z]/g, '');
       console.log(name);
-      const imageFile = new Moralis.File(name, {base64 : btoa(JSON.stringify(data))});
+      const imageFile = new Moralis.File(name, data);
       await imageFile.saveIPFS({useMasterKey:true});
       const imageURI = imageFile.ipfs();
       const metadata = {
@@ -94,7 +94,7 @@ async function upload()
         console.error(error);
       }
       document.getElementById("uploadButton").innerHTML = "Mint";
-      message.innerHTML = "Please give name and description in English!";
+      message.innerHTML = "Some error has occured! Please refresh the";
     }
   }
 
