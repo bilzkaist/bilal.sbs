@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title> Accelerating PUF-based Reliable Security Framework for Mobile Edge Computing in Metaverse</title>
+    <title> SecTransNFT : Smart Card based Secure Transaction Framework for Non-Fungible Tokens</title>
     <!-- Bootstrap -->
     <link href="css/bootstrap-4.4.1.css" rel="stylesheet">
 	<link href="css/bilz.css" rel="stylesheet">
@@ -195,39 +195,56 @@ Registration and Distribution</a>
     </div>
     <hr>
   --><br>
-    <h2 class="text-center"> Accelerating PUF-based Reliable Security Framework for Mobile Edge Computing in Metaverse </h2>
-    <hr>
-    <h4 class="text-center">Muhammad Bilal Akram Dastagir</h4>
+    <h2 class="text-center"> SecTransNFT : Smart Card based Secure Transaction Framework for Non-Fungible Tokens </h2>
     <hr>
     <div class="container">
       <div class="card">
-             <!-- <img class="card-img-top" src="images/space_gps_400_200.png" alt="Card image cap">-->
-             
-              <div class="card-body">
-                <h5 class="card-title">Abstract: </h5>
-                <p class="card-text">Accelerating PUF-based Reliable Security Framework for Mobile Edge Computing in Metaverse</p>
-               
-          - Smart Card (NFC Card) - Physical Authentication)<br>
-   
-   - Encryption and Security<br>
-  - NFT Smart Contract (Blockchain)<br>
-   - Counter Authentication Metamask (Blockchain)<br>
-   - NFT Marketplace Transaction Platform
-  <a href="#">And More</a> <br><br>
-  
-                <a href="https://smartmint.sbs/todo/api/v1.0/tasks" class="btn btn-primary">Check API</a>
-                
+          <div class="card-body">
+            <div class="text-center">
+            <!--QR Code Start -->
+            <div id="qr-reader" style="width: 600px">
+              <script>
+                    function onScanSuccess(decodedText, decodedResult) {
+                      console.log(`Code scanned = ${decodedText}`, decodedResult);
+                  }
+                  var html5QrcodeScanner = new Html5QrcodeScanner(
+                    "qr-reader", { fps: 10, qrbox: 250 });
+                  html5QrcodeScanner.render(onScanSuccess);
+              </script>
+            </div>
+            <!--QR Code End -->
+            </div>5
+          </div>
+      </div>
+    </div>
+    <hr>
+    <div class="container">
+      <div class="card">
+          <div class="card-body">
+            <div class="text-center">
+              <button id="scanButton">Scan</button>
+              <button id="writeButton">Write</button>
+              <button id="makeReadOnlyButton">Make Read-Only</button>
+              <div>
+                <h3>Live Output</h3>
+                <div id="output" class="output">
+                  <div id="content"></div>
+                  <div id="status"></div>
+                  <pre id="log"></pre>
+                </div>
               </div>
             </div>
+          </div>
       </div>
+    </div>
     <hr>
     <div class="container">
 		<div class="card">
            <!-- <img class="card-img-top" src="images/space_gps_400_200.png" alt="Card image cap">-->
            
             <div class="card-body">
-              <h5 class="card-title">Major Contributions: </h5>
-              <p class="card-text">Accelerating PUF-based Reliable Security Framework for Mobile Edge Computing in Metaverse</p>
+              <h5 class="card-title">SecTransNFT Secure Transaction NFT Server</h5>
+              <p class="card-text">SecTransNFT : Smart Card based Secure Transaction Framework for Non-Fungible Tokens</p>
              
 				- Smart Card (NFC Card) - Physical Authentication)<br>
  
@@ -238,7 +255,52 @@ Registration and Distribution</a>
 <a href="#">And More</a> <br><br>
 
               <a href="#" class="btn btn-primary">Read more</a>
+              <script>
+              scanButton.addEventListener("click", async () => {
+                log("User clicked scan button");
               
+                try {
+                  const ndef = new NDEFReader();
+                  await ndef.scan();
+                  log("> Scan started");
+              
+                  ndef.addEventListener("readingerror", () => {
+                    log("Argh! Cannot read data from the NFC tag. Try another one?");
+                  });
+              
+                  ndef.addEventListener("reading", ({ message, serialNumber }) => {
+                    log(`> Serial Number: ${serialNumber}`);
+                    log(`> Records: (${message.records.length})`);
+                  });
+                } catch (error) {
+                  log("Argh! " + error);
+                }
+              });
+              
+              writeButton.addEventListener("click", async () => {
+                log("User clicked write button");
+              
+                try {
+                  const ndef = new NDEFReader();
+                  await ndef.write("Hello world!");
+                  log("> Message written");
+                } catch (error) {
+                  log("Argh! " + error);
+                }
+              });
+              
+              makeReadOnlyButton.addEventListener("click", async () => {
+                log("User clicked make read-only button");
+              
+                try {
+                  const ndef = new NDEFReader();
+                  await ndef.makeReadOnly();
+                  log("> NFC tag has been made permanently read-only");
+                } catch (error) {
+                  log("Argh! " + error);
+                }
+              });
+              </script>
             </div>
           </div>
 	  </div>
